@@ -1,9 +1,9 @@
 import React from 'react';
-import Tag from './Tag';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Tag from './Tag';
 import Avatar from './Avatar';
 import deleteSvg from '../../assets/icons/delete.svg';
-import { Link } from 'react-router-dom';
 
 const Contact = ({ contact }) => {
   const returnValue = (value) => {

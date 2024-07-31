@@ -1,7 +1,8 @@
 import React from 'react';
+import { useGetContactsQuery } from './store/nimble/nimble.api';
 import Title from './components/Base/Title';
 import Contact from './components/Base/Contact';
-import { useGetContactsQuery } from './store/nimble/nimble.api';
+import Loader from './components/Base/Loader';
 
 const Contacts = () => {
   const { data } = useGetContactsQuery();
@@ -14,7 +15,7 @@ const Contacts = () => {
         {data ? (
           data.map((contact) => <Contact key={contact.id} contact={contact} />)
         ) : (
-          <p>Loading...</p>
+          <Loader />
         )}
       </div>
     </div>
