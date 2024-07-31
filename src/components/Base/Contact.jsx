@@ -3,6 +3,7 @@ import Tag from './Tag';
 import PropTypes from 'prop-types';
 import Avatar from './Avatar';
 import deleteSvg from '../../assets/icons/delete.svg';
+import { Link } from 'react-router-dom';
 
 const Contact = ({ contact }) => {
   const returnValue = (value) => {
@@ -10,7 +11,10 @@ const Contact = ({ contact }) => {
   };
 
   return (
-    <div className="px-4 pt-4 pb-6 bg-grey-2 w-full rounded grid grid-cols-[4rem_1fr] gap-4 items-center">
+    <Link
+      to={`/contact/${contact.id}`}
+      className="px-4 pt-4 pb-6 bg-grey-2 w-full rounded grid grid-cols-[4rem_1fr] gap-4 items-center"
+    >
       <Avatar img={contact.avatar_url} />
       <div className="relative">
         <div className="font-medium ">
@@ -33,7 +37,7 @@ const Contact = ({ contact }) => {
       ) : (
         <></>
       )}
-    </div>
+    </Link>
   );
 };
 

@@ -5,7 +5,6 @@ import { useGetContactsQuery } from './store/nimble/nimble.api';
 
 const Contacts = () => {
   const { data } = useGetContactsQuery();
-  console.log(data);
   return (
     <div className="w-full">
       <Title tag="h2" className="mb-2">

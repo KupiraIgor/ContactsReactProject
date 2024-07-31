@@ -24,7 +24,16 @@ export const nimbleApi = createApi({
         return baseQueryReturnValue.resources;
       },
     }),
+    getOneContact: builder.query({
+      query: (id) => ({
+        url: `contact/${id}`,
+      }),
+      transformResponse(baseQueryReturnValue) {
+        return baseQueryReturnValue.resources[0];
+      },
+    }),
   }),
 });
 
 export const { useGetContactsQuery } = nimbleApi;
+export const { useGetOneContactQuery } = nimbleApi;
