@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const API_URL = 'https://live.devnimble.com/api/v1/';
-const token = 'VlP9cwH6cc7Kg2LsNPXpAvF6QNmgZn';
-const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
+const YOUR_API_KEY = 'VlP9cwH6cc7Kg2LsNPXpAvF6QNmgZn';
 
 export const nimbleApi = createApi({
   reducerPath: 'nimbleApi',
   tagTypes: ['Contact', 'Tags'],
   baseQuery: fetchBaseQuery({
-    baseUrl: `${corsProxy}${API_URL}`,
+    baseUrl: `${CORS_PROXY}${API_URL}`,
     prepareHeaders: (headers) => {
-      headers.set('Authorization', `Bearer ${token}`);
+      headers.set('Authorization', `Bearer ${YOUR_API_KEY}`);
       return headers;
     },
   }),
@@ -74,7 +74,10 @@ export const nimbleApi = createApi({
         method: 'PUT',
         body: body,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Tags', id }],
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Tags', id },
+        { type: 'Contact' },
+      ],
     }),
   }),
 });
