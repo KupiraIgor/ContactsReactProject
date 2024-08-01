@@ -9,9 +9,10 @@ import Button from './Base/Button';
 import { useAddTagMutation } from '../store/nimble/nimble.api';
 import PropTypes from 'prop-types';
 import LoaderBg from './Base/LoaderBg';
+import { toast } from 'react-toastify';
 
 const OneContact = ({ contact }) => {
-  const { handleSubmit, control, clearErrors, reset } = useForm({
+  const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       tags: '',
     },
@@ -30,8 +31,9 @@ const OneContact = ({ contact }) => {
     try {
       await addNewTag(argForRequest).unwrap();
       reset();
-      clearErrors();
+      toast.success('Tags added');
     } catch (error) {
+      toast.error(error.data.message);
       console.error('Failed:', error);
     }
   };
@@ -46,7 +48,7 @@ const OneContact = ({ contact }) => {
         <Title tag="h2" className="mb-3">
           Tags
         </Title>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap overflow-hidden">
           {contact.tags.length ? (
             contact.tags.map((tag) => <Tag key={tag.id}>{tag.tag}</Tag>)
           ) : (
@@ -79,7 +81,7 @@ const OneContact = ({ contact }) => {
           )}
         />
         <Button type="submit">Add Tag</Button>
-        {isLoading ? <LoaderBg /> : <></>}
+        {isLoading && <LoaderBg />}
       </form>
     </div>
   );

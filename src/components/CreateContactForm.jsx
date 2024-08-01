@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import Title from './Base/Title';
 import Input from './Base/Input';
@@ -49,13 +50,15 @@ const CreateContactForm = () => {
     try {
       await createContact(validFormData).unwrap();
       reset();
+      toast.success('Contact added');
     } catch (error) {
+      toast.error(error.data.message);
       console.error('Failed:', error);
     }
   };
   return (
     <div className="relative basis-72 grow-0 shrink-0">
-      {isLoading ? <LoaderBg /> : <></>}
+      {isLoading && <LoaderBg />}
       <div className="top-9 left-0 static md:sticky">
         <Title tag="h2" className="mb-1">
           Create Contact
