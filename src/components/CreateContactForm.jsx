@@ -1,13 +1,12 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useAddContactMutation } from '../store/nimble/nimble.api';
 
 import Title from './Base/Title';
 import Input from './Base/Input';
 import Button from './Base/Button';
 import LoaderBg from './Base/LoaderBg';
-
-import { useAddContactMutation } from '../store/nimble/nimble.api';
 
 const CreateContactForm = () => {
   const { handleSubmit, control, reset } = useForm({
@@ -120,6 +119,7 @@ const CreateContactForm = () => {
               <Input
                 label="Email"
                 className="mb-5"
+                type="email"
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}

@@ -9,6 +9,7 @@ const Input = ({
   onBlur,
   value,
   error,
+  type = 'text',
 }) => {
   const id = useId();
   return (
@@ -17,7 +18,7 @@ const Input = ({
         {label}
       </label>
       <input
-        type="text"
+        type={type}
         id={id}
         onChange={onChange}
         onBlur={onBlur}
@@ -33,6 +34,7 @@ Input.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   value: PropTypes.string,
