@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Title = ({ children, className = '', tag }) => {
+const Title = ({ children, className = '', tag = 'div' }) => {
   const CustomTag = tag;
 
   return (

@@ -1,7 +1,15 @@
 import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ className = '', label, onChange, onBlur, value, error }) => {
+const Input = ({
+  className = '',
+  label,
+  placeholder,
+  onChange,
+  onBlur,
+  value,
+  error,
+}) => {
   const id = useId();
   return (
     <div className={className}>
@@ -14,7 +22,8 @@ const Input = ({ className = '', label, onChange, onBlur, value, error }) => {
         onChange={onChange}
         onBlur={onBlur}
         value={value}
-        className={`h-12 p-3 border rounded-lg w-full focus:outline-none  ${error ? 'border-red focus:border-red' : 'border-grey focus:border-black'}`}
+        placeholder={placeholder}
+        className={`h-12 text-xs p-3 border rounded-lg w-full focus:outline-none outline-none ease-in duration-100 ${error ? 'border-red focus:border-red hover:border-red' : 'border-grey focus:border-black hover:border-black'}`}
       />
     </div>
   );
@@ -23,6 +32,7 @@ const Input = ({ className = '', label, onChange, onBlur, value, error }) => {
 Input.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   value: PropTypes.string,

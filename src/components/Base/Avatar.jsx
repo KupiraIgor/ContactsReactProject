@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import avatarSvg from '../../assets/icons/avatar.svg';
 
-const Avatar = ({ img }) => {
+const Avatar = ({ img, large }) => {
   return (
-    <div className="relative w-16 h-16 rounded-[50%] overflow-hidden">
+    <div
+      className={`relative  rounded-[50%] overflow-hidden ${large ? 'w-20 h-20' : 'w-16 h-16'}`}
+    >
       {img ? (
         <img
           src={img}
@@ -24,6 +26,7 @@ const Avatar = ({ img }) => {
 
 Avatar.propTypes = {
   img: PropTypes.string,
+  large: PropTypes.bool,
 };
 
 export default Avatar;

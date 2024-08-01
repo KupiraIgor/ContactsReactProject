@@ -6,7 +6,7 @@ const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
 export const nimbleApi = createApi({
   reducerPath: 'nimbleApi',
-  tagTypes: ['Contact'],
+  tagTypes: ['Contact', 'Tags'],
   baseQuery: fetchBaseQuery({
     baseUrl: `${corsProxy}${API_URL}`,
     prepareHeaders: (headers) => {
@@ -23,13 +23,11 @@ export const nimbleApi = createApi({
           sort: 'created:desc',
         },
       }),
-
       providesTags: () => [
         {
           type: 'Contact',
         },
       ],
-
       transformResponse(baseQueryReturnValue) {
         return baseQueryReturnValue.resources;
       },
@@ -39,7 +37,7 @@ export const nimbleApi = createApi({
       query: (id) => ({
         url: `contact/${id}`,
       }),
-
+      providesTags: (result, error, id) => [{ type: 'Tags', id }],
       transformResponse(baseQueryReturnValue) {
         return baseQueryReturnValue.resources[0];
       },
@@ -51,12 +49,32 @@ export const nimbleApi = createApi({
         method: 'POST',
         body: body,
       }),
-
       invalidatesTags: () => [
         {
           type: 'Contact',
         },
       ],
+    }),
+
+    deleteContact: builder.mutation({
+      query: (id) => ({
+        url: `contact/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: () => [
+        {
+          type: 'Contact',
+        },
+      ],
+    }),
+
+    addTag: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `contacts/${id}/tags`,
+        method: 'PUT',
+        body: body,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Tags', id }],
     }),
   }),
 });
@@ -65,4 +83,6 @@ export const {
   useGetContactsQuery,
   useGetOneContactQuery,
   useAddContactMutation,
+  useAddTagMutation,
+  useDeleteContactMutation,
 } = nimbleApi;

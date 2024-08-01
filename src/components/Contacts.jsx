@@ -1,13 +1,14 @@
 import React from 'react';
-import { useGetContactsQuery } from './store/nimble/nimble.api';
-import Title from './components/Base/Title';
-import Contact from './components/Base/Contact';
-import Loader from './components/Base/Loader';
+import { useGetContactsQuery } from '../store/nimble/nimble.api';
+import Title from './Base/Title';
+import Contact from './Base/Contact';
+import Loader from './Base/Loader';
 
 const Contacts = () => {
   const { data } = useGetContactsQuery();
+
   return (
-    <div className="w-full">
+    <div className="w-full  grow-0">
       <Title tag="h2" className="mb-2">
         Contacts
       </Title>

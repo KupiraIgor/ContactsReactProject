@@ -4,6 +4,8 @@ import { useForm, Controller } from 'react-hook-form';
 import Title from './Base/Title';
 import Input from './Base/Input';
 import Button from './Base/Button';
+import LoaderBg from './Base/LoaderBg';
+
 import { useAddContactMutation } from '../store/nimble/nimble.api';
 
 const CreateContactForm = () => {
@@ -48,13 +50,14 @@ const CreateContactForm = () => {
       await createContact(validFormData).unwrap();
       reset();
     } catch (error) {
-      console.error('Failed to create item:', error);
+      console.error('Failed:', error);
     }
   };
   return (
     <div className="relative basis-72 grow-0 shrink-0">
-      <div className="sticky top-9 left-0">
-        <Title tag="h2" className="pb-1">
+      {isLoading ? <LoaderBg /> : <></>}
+      <div className="top-9 left-0 static md:sticky">
+        <Title tag="h2" className="mb-1">
           Create Contact
         </Title>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -123,11 +126,6 @@ const CreateContactForm = () => {
           />
           <Button type="submit">Add Contact</Button>
         </form>
-        {isLoading ? (
-          <div className="absolute w-full h-full z-10 bg-white-opacity"></div>
-        ) : (
-          <></>
-        )}
       </div>
     </div>
   );
