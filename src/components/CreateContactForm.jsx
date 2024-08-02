@@ -62,7 +62,7 @@ const CreateContactForm = () => {
         <Title tag="h2" className="mb-1">
           Create Contact
         </Title>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate onSubmit={handleSubmit(onSubmit)}>
           <Controller
             control={control}
             name="firstName"
