@@ -10,17 +10,26 @@ const UserInfo = ({ info }) => {
     <div className="overflow-hidden">
       <div className="font-medium flex flex-wrap">
         {returnValue('first name') && (
-          <span className="truncate overflow-hidden">
+          <span
+            className="truncate overflow-hidden"
+            title={returnValue('first name')}
+          >
             {returnValue('first name')}&nbsp;
           </span>
         )}
         {returnValue('last name') && (
-          <span className="truncate overflow-hidden">
+          <span
+            className="truncate overflow-hidden"
+            title={returnValue('last name')}
+          >
             {returnValue('last name')}
           </span>
         )}
       </div>
-      <div className="font-medium truncate overflow-hidden">
+      <div
+        className="font-medium truncate overflow-hidden"
+        title={returnValue('email')}
+      >
         {returnValue('email')}
       </div>
     </div>

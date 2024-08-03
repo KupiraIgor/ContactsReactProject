@@ -5,7 +5,7 @@ import avatarSvg from '../../assets/icons/avatar.svg';
 const Avatar = ({ img, large }) => {
   return (
     <div
-      className={`relative  rounded-[50%] overflow-hidden ${large ? 'w-20 h-20' : 'w-16 h-16'}`}
+      className={`relative  rounded-[50%] overflow-hidden shrink-0 ${large ? 'w-20 h-20' : 'w-16 h-16'}`}
     >
       {img ? (
         <img
